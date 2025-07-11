@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Project Alpha",
+    "description": "A web application built with modern JavaScript and a focus on performance.",
+    "tech": ["HTML", "CSS", "JavaScript"]
+  },
+  {
+    "title": "Portfolio Website",
+    "description": "The very site you're looking at, built to be fast and dynamic.",
+    "tech": ["AJAX", "Fetch API"]
+  },
+  {
+    "title": "Data Visualizer",
+    "description": "A tool for creating insightful charts from raw data sources.",
+    "tech": ["D3.js", "JSON"]
+  }
+]
