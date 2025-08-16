@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Trader's CS:GO Case Analysis</title>
+    <style>
+        :root {
+            --color-bg: #1b2838;
+            --color-primary: #2a475e;
+            --color-secondary: #66c0f4;
+            --color-text: #c7d5e0;
+            --color-blue: #4f6bca;
+            --color-purple: #8847ff;
+            --color-pink: #d32ce6;
+            --color-red: #eb4b4b;
+            --color-gold: #ffd700;
+            --color-stattrak: #cf6a32;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--color-secondary);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #ffffff;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: var(--color-secondary);
+        }
+
+        section {
+            background-color: var(--color-primary);
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: var(--color-secondary);
+            border-bottom: 2px solid var(--color-secondary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .odds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .odd-item {
+            padding: 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+        .odd-item.blue { background-color: var(--color-blue); }
+        .odd-item.purple { background-color: var(--color-purple); }
+        .odd-item.pink { background-color: var(--color-pink); }
+        .odd-item.red { background-color: var(--color-red); }
+        .odd-item.gold { background-color: var(--color-gold); }
+        .odd-item.stattrak { background-color: var(--color-stattrak); margin-top: 10px; grid-column: 1 / -1; }
+
+        .odd-item .chance { font-size: 2em; display: block; }
+        .odd-item .type { font-size: 1.1em; }
+
+        .roi-calculator {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            align-items: center;
+        }
+
+        .roi-calculator .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .roi-calculator label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .roi-calculator input {
+            padding: 10px;
+            border: 2px solid var(--color-secondary);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .roi-result {
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .roi-result #roiValue {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .case-card {
+            background-color: #2c3e50;
+            border-radius: 5px;
+            padding: 20px;
+            border-left: 5px solid;
+        }
+        .case-card.high-roi { border-color: #2ecc71; }
+        .case-card.mid-roi { border-color: #f1c40f; }
+        .case-card.low-roi { border-color: #e74c3c; }
+        
+        .case-card h3 { margin-top: 0; color: #ffffff; }
+        .case-card .chase-item {
+            font-style: italic;
+            color: var(--color-gold);
+        }
+
+        .strategies .strategy {
+            margin-bottom: 15px;
+        }
+        .strategies .strategy h3 {
+            margin-bottom: 5px;
+            color: white;
+        }
+        .strategies .strategy span {
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #a0a0a0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CS:GO Case Analytics for the Professional Trader</h1>
+        <p>An Interactive Research Report on Value, Probability, and Profit Strategies</p>
+    </header>
+
+    <div class="container">
+        
+        <section id="economics">
+            <h2>The Economics of a Key: Understanding the Odds</h2>
+            <p>Every standard case you open operates on the same fixed probabilities, officially disclosed by Valve. The value of a case is not determined by better odds, but by the desirability of the items within these tiers. Understand that these odds are independent for every opening; you are never "due" for a win.</p>
+            <div class="odds-grid">
+                <div class="odd-item blue">
+                    <span class="chance">79.92%</span>
+                    <span class="type">Mil-Spec (Blue)</span>
+                </div>
+                <div class="odd-item purple">
+                    <span class="chance">15.98%</span>
+                    <span class="type">Restricted (Purple)</span>
+                </div>
+                <div class="odd-item pink">
+                    <span class="chance">3.2%</span>
+                    <span class="type">Classified (Pink)</span>
+                </div>
+                <div class="odd-item red">
+                    <span class="chance">0.64%</span>
+                    <span class="type">Covert (Red)</span>
+                </div>
+                <div class="odd-item gold">
+                    <span class="chance">0.26%</span>
+                    <span class="type">Rare Special (Gold)</span>
+                </div>
+                 <div class="odd-item stattrak">
+                    <span class="chance">10%</span>
+                    <span class="type">Chance for any unboxed item to be StatTrak™</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="roi">
+            <h2>ROI - The Trader's Compass</h2>
+            <p>Return on Investment (ROI) is the single most important metric for evaluating a case. It calculates the expected return against your cost (Case Price + Key Price). An ROI below 100% signifies an expected loss over a large sample size. In this market, a <strong>65-75% ROI is considered very good.</strong> Use the calculator below to understand the relationship between cost, value, and return.</p>
+            <div class="roi-calculator">
+                <div class="input-group">
+                    <label for="casePrice">Case Price ($)</label>
+                    <input type="number" id="casePrice" value="0.57" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label for="avgValue">Avg. Item Value ($)</label>
+                    <input type="number" id="avgValue" value="2.32" step="0.01">
+                </div>
+                 <div class="input-group">
+                    <label for="keyPrice">Key Price ($)</label>
+                    <input type="number" id="keyPrice" value="2.49" step="0.01" readonly>
+                </div>
+                <div class="roi-result">
+                    <span>Expected ROI</span>
+                    <span id="roiValue">75.81%</span>
+                </div>
+            </div>
+        </section>
+        
+        <section id="case-studies">
+            <h2>Case Studies: A Comparative Look</h2>
+            <div class="case-studies">
+                <div class="case-card high-roi">
+                    <h3>Kilowatt Case</h3>
+                    <p><strong>Approx. Cost:</strong> $3.06 ($0.57 + $2.49 key)</p>
+                    <p><strong>Est. ROI:</strong> ~75.71%</p>
+                    <p><strong>Analysis:</strong> A prime example of a modern, high-ROI case. Its value is driven by highly desirable new skins like the AK-47 | Inheritance and the introduction of the Kukri Knife, making both the Red and Gold tiers very valuable.</p>
+                    <p><strong>Chase Item:</strong> <span class="chase-item">Kukri Knife</span></p>
+                </div>
+                <div class="case-card mid-roi">
+                    <h3>CS:GO Weapon Case 2</h3>
+                    <p><strong>Approx. Cost:</strong> $17.50 ($15.01 + $2.49 key)</p>
+                    <p><strong>Est. ROI:</strong> ~70.31%</p>
+                    <p><strong>Analysis:</strong> An expensive, discontinued case. Its high price is due to scarcity. The ROI remains respectable because it contains classic, highly sought-after knife finishes (Case Hardened, Slaughter) for foundational knives like the Karambit and M9 Bayonet.</p>
+                     <p><strong>Chase Item:</strong> <span class="chase-item">Karambit | Case Hardened</span></p>
+                </div>
+                <div class="case-card low-roi">
+                    <h3>Danger Zone Case</h3>
+                    <p><strong>Approx. Cost:</strong> $3.39 ($0.90 + $2.49 key)</p>
+                    <p><strong>Est. ROI:</strong> ~55-60%</p>
+                    <p><strong>Analysis:</strong> A very cheap and widely available case. While its overall ROI is lower, its value comes from containing popular skins like the AK-47 | Asiimov and AWP | Neo-Noir at a low entry cost. Excellent for acquiring trade-up fodder.</p>
+                    <p><strong>Chase Item:</strong> <span class="chase-item">Talon Knife</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategies" class="strategies">
+            <h2>The Trader's Playbook: 5 Advised Strategies</h2>
+            <div class="strategy">
+                <h3>1. The ROI Maximizer (The Grinder)</h3>
+                <p><span>Objective:</span> Systematically open cases with the highest available ROI to mitigate losses and get as close to the statistical average return as possible. This is a volume-based approach.</p>
+                <p><span>Method:</span> Consistently monitor third-party analytics sites for the top 1-3 cases by ROI. Focus your unboxings exclusively on these cases, like the <strong>Fever Case</strong> or <strong>Kilowatt Case</strong>. The goal is not a single big win, but a sustainable, data-driven approach to unboxing.</p>
+            </div>
+            <div class="strategy">
+                <h3>2. The "Big Fish" Hunt (The High Roller)</h3>
+                <p><span>Objective:</span> Target specific, ultra-valuable "jackpot" items, accepting a lower overall ROI for a higher chance at a life-changing unbox.</p>
+                <p><span>Method:</span> Identify cases known for specific coveted items. To hunt Butterfly Knives, open <strong>Spectrum 2</strong> or <strong>Operation Breakout</strong> cases. For classic Karambit finishes, open <strong>CS:GO Weapon Cases</strong>. This strategy is a high-risk, high-reward gamble that acknowledges the lottery-like nature of unboxing.</p>
+            </div>
+            <div class="strategy">
+                <h3>3. The Long Game (The Investor)</h3>
+                <p><span>Objective:</span> Generate profit from the natural appreciation of case value by treating sealed cases as an asset, without ever opening them.</p>
+                <p><span>Method:</span> Purchase and hold cases that have been moved from the active drop pool to the "Rare Drop Pool" or are entirely discontinued (e.g., from past Operations). Cases like the <strong>Operation Hydra Case</strong> or the original <strong>CS:GO Weapon Case</strong> have a finite supply. As they are opened and consumed, their scarcity drives up their market price, offering a safer, albeit slower, return.</p>
+            </div>
+            <div class="strategy">
+                <h3>4. The Trade-Up Fuel Strategy (The Industrialist)</h3>
+                <p><span>Objective:</span> Open cases not for their potential drops, but to acquire a high volume of cheap Mil-Spec and Restricted skins for use in Trade Up Contracts.</p>
+                <p><span>Method:</span> Target the absolute cheapest cases on the market, such as the <strong>Snakebite Case</strong> or <strong>Danger Zone Case</strong>. The goal is to minimize the cost per blue/purple skin. This strategy bypasses the case's stated ROI, instead using the unboxed items as raw materials for a different, more controlled probability game.</p>
+            </div>
+            <div class="strategy">
+                <h3>5. The New Release Gamble (The Speculator)</h3>
+                <p><span>Objective:</span> Capitalize on the market inefficiency and hype surrounding a newly released case.</p>
+                <p><span>Method:</span> Immediately upon the release of a new case, be among the first to open it. The supply of the new skins will be at its lowest, while demand from eager players is at its absolute peak. Even desirable pink or purple skins can sell for an inflated price in the first 24-48 hours before the market becomes saturated and prices normalize. This is a highly time-sensitive and risky strategy that can yield rapid, short-term profits.</p>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Disclaimer: The CS:GO market is volatile and speculative. All investments carry risk. This analysis is for informational purposes and is not financial advice. Market data and ROI estimates are subject to change.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const casePriceInput = document.getElementById('casePrice');
+            const avgValueInput = document.getElementById('avgValue');
+            const keyPriceInput = document.getElementById('keyPrice');
+            const roiValueSpan = document.getElementById('roiValue');
+
+            function calculateROI() {
+                const casePrice = parseFloat(casePriceInput.value) || 0;
+                const avgValue = parseFloat(avgValueInput.value) || 0;
+                const keyPrice = parseFloat(keyPriceInput.value) || 0;
+                
+                const totalCost = casePrice + keyPrice;
+                
+                if (totalCost === 0) {
+                    roiValueSpan.textContent = '0.00%';
+                    return;
+                }
+
+                const roi = (avgValue / totalCost) * 100;
+                roiValueSpan.textContent = roi.toFixed(2) + '%';
+                
+                if (roi >= 70) {
+                    roiValueSpan.style.color = '#2ecc71'; // Green
+                } else if (roi >= 50) {
+                    roiValueSpan.style.color = '#f1c40f'; // Yellow
+                } else {
+                    roiValueSpan.style.color = '#e74c3c'; // Red
+                }
+            }
+
+            casePriceInput.addEventListener('input', calculateROI);
+            avgValueInput.addEventListener('input', calculateROI);
+            
+            calculateROI(); // Initial calculation on page load
+        });
+    </script>
+
+</body>
+</html>
